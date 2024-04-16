@@ -30,7 +30,7 @@ dheeraj.city = "Bhopal";
 class User {
 // public : will be accessible in that(where declared) class only 
 //protected : will be accesible for the class whihch inherited the proprty of parent class.
-    private _courseCount = 1;    
+    protected _courseCount = 1;    
     readonly city : string = "Ahmedabad"   //here given defualt value ,doesnot need to mention if you want default value in constructor
     
     constructor(
@@ -73,6 +73,7 @@ class User {
 class SubUser extends User {
     ifFamily : boolean = true;
     changeCourseCount(){
+        //you can read protected method using inheritence..
         this._courseCount =4;
     }
 }
