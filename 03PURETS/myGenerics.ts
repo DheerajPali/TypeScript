@@ -44,3 +44,88 @@ interface Bottle {
 
 identityFour<Bottle>({brand:" ",type:4})  //it will take all the param of interface
 
+
+
+//HOW TO DEFINE GENERIC ARRAY..
+
+function getSearchProducts<T>(products : T[]) : T{
+    const myIndex = 3;
+
+    //here you are returning 'T'- one element only .
+    return products[myIndex]
+}
+
+//Arrow function for generic array 
+//we just need to add generic after one time ,see the diff btw reular and generic 
+// comma ","  after T  as <T,> shows that this is generic not a jsx tag, so no issue to add comma there. because vs code provide suggestion to take it as a tag
+
+const getMore = <T,>(products : T[]) : T =>{
+    const index = 2;
+    return products[index];
+}
+
+//this is regular arrow function without generic 
+const regularArrow = (products : number[]) : number =>{
+    const index = 2;
+    return products[index]
+}
+
+
+//How to extend generics??
+
+/*
+function anotherFunction <T,U extends number>(val1 : T , val2 : U) : object{
+    return {
+        val1,
+        val2
+    }
+}
+
+//it will show error when I'll extend U as number
+anotherFunction(3,"4"); 
+*/
+
+
+
+// Now we'll give it type interface..
+
+interface Database {
+    connection : string,
+    username : string,
+    password: string,
+}
+
+
+function anotherFunction <T,U extends Database>(val1 : T , val2 : U) : object{
+    return {
+        val1,
+        val2
+    }
+}
+//here we need to provide required value of type Database(interface)
+anotherFunction(3,{connection: "con",password:"pass",username: "user"});
+
+
+
+//HOW TO DEFINE CLASS USING GENERIC.
+
+interface Quiz{
+    name: string,
+    type: string
+}
+interface Course {
+    name : string,
+    author : string,
+    subject : string,
+}
+
+//this class returns generic type T, and will lock type of T
+// then cart will be the same type
+// product also will be of same type
+class Sellable<T>{
+    public cart : T[] = []
+
+    addToCart (product : T){
+        this.cart.push(product);
+    }
+}
