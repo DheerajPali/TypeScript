@@ -41,3 +41,6 @@ class Instagram implements TakePhoto ,Stroy{
     }
 }
 
+
+export {}
+
